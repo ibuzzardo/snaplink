@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: snaplink-postgres
+    environment:
+      POSTGRES_DB: snaplink
+      POSTGRES_USER: snaplink
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U snaplink']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - snaplink-network
+
+  # SnapLink Application
+  app:
+    build: .
+    container_name: snaplink-app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://snaplink:${DB_PASSWORD:-password}@postgres:5432/snaplink
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
+      GITHUB_ID: ${GITHUB_ID}
+      GITHUB_SECRET: ${GITHUB_SECRET}
+      SENTRY_DSN: ${SENTRY_DSN}
+      NODE_ENV: ${NODE_ENV:-production}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3000}
+    ports:
+      - '3000:3000'
+    healthcheck:
+      test: ['CMD', 'wget', '--quiet', '--tries=1', '--spider', 'http://localhost:3000/']
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    networks:
+      - snaplink-network
+    restart: unless-stopped
+
+  # Optional: Sentry (if self-hosting)
+  # sentry:
+  #   image: sentry:latest
+  #   environment:
+  #     SENTRY_SECRET_KEY: ...
+  #   ports:
+  #     - "9000:9000"
+  #   networks:
+  #     - snaplink-network
+
+volumes:
+  postgres_data:
+
+networks:
+  snaplink-network:
+    driver: bridge
