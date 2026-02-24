@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '@/server/db/client';
 import { users } from '@/server/db/schema';

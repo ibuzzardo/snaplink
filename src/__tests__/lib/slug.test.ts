@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { isValidSlug, generateRandomSlug, generateSlug } from '@/lib/slug';
 

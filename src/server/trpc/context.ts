@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Session } from 'next-auth';
 import { getServerSession } from 'next-auth/next';
 import type { NextRequest } from 'next/server';

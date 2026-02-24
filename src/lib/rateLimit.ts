@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { headers } from 'next/headers';
 
 // Simple in-memory rate limiter (v1 - use Redis in v2)

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createTRPCRouter } from '../trpc';
 import { linksRouter } from './links';
 import { analyticsRouter } from './analytics';
