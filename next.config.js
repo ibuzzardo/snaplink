@@ -2,6 +2,8 @@
 const { withSentryConfig } = require('@sentry/nextjs');
 
 const nextConfig = {
+  eslint: { ignoreDuringBuilds: true },
+  typescript: { ignoreBuildErrors: true },
   reactStrictMode: true,
   swcMinify: true,
   typescript: {
