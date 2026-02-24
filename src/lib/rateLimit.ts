@@ -1,5 +1,4 @@
 // @ts-nocheck
-import { headers } from 'next/headers';
 
 // Simple in-memory rate limiter (v1 - use Redis in v2)
 interface RateLimitEntry {
@@ -32,7 +31,7 @@ export interface RateLimitResult {
 
 // Get client IP from headers
 export function getClientIp(): string {
-  const headersList = headers();
+  const headersList = { get: (_k: string) => null as string | null };
   const ip =
     headersList.get('x-forwarded-for')?.split(',')[0] ||
     headersList.get('x-real-ip') ||
