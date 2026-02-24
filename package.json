@@ -51,7 +51,8 @@
     "ua-parser-js": "^1.0.37",
     "@sentry/nextjs": "^7.91.0",
     "dotenv": "^16.3.1",
-    "superjson": "^2.2.1"
+    "superjson": "^2.2.1",
+    "@trpc/next": "^10.45.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.6",
@@ -73,6 +74,7 @@
     "@testing-library/jest-dom": "^6.1.5",
     "msw": "^2.0.11",
     "@playwright/test": "^1.40.1",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "eslint-config-prettier": "^9.1.0"
   }
 }
