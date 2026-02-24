@@ -30,7 +30,7 @@ export interface RateLimitResult {
 }
 
 // Get client IP from headers
-function getClientIp(): string {
+export function getClientIp(): string {
   const headersList = headers();
   const ip =
     headersList.get('x-forwarded-for')?.split(',')[0] ||
