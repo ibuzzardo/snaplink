@@ -1,5 +1,10 @@
 # SnapLink — Production-Ready URL Shortener
 
+> Built with [Dark Factory v4](https://github.com/ibuzzardo/dark-factory-v4) — autonomous AI software development pipeline
+
+**[Live Demo](https://snaplink-lime.vercel.app)**
+
+
 A modern, full-stack URL shortening service with real-time analytics, built with Next.js, PostgreSQL, and tRPC.
 
 ## Features
