@@ -75,6 +75,7 @@
     "msw": "^2.0.11",
     "@playwright/test": "^1.40.1",
     "ts-node": "^10.9.2",
-    "eslint-config-prettier": "^9.1.0"
+    "eslint-config-prettier": "^9.1.0",
+    "@vitejs/plugin-react": "latest"
   }
 }
